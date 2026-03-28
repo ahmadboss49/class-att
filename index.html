@@ -1357,11 +1357,13 @@ function updateSyncUI(state){
   document.getElementById('btn-sync').textContent='⟳ Sync...';
 
   try{
-    const r=await fetch(url+'?action=students');
-    if(!r.ok) throw new Error('HTTP '+r.status);
-    const data=await r.json();
-    if(!data.success) throw new Error('Script error');
+    const r = await fetch("https://script.google.com/macros/s/AKfycbzklGJqx-HehB9xBUVURTA8rpAkOtz2SmzWVBK3Q_XfMoCfxWY0GVoI07f8xzioU8wI3g/exec");
 
+const data = await r.json();
+console.log("DATA:", data);
+alert("DATA LOADED");
+
+if(!data.success) throw new Error('Script error');
     // Merge students — preserve local base64 photos
     data.students.forEach(ns=>{
       const idx=students.findIndex(s=>s.id===ns.id);
